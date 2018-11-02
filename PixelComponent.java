@@ -3,19 +3,13 @@ package com.Adil;
 import javax.swing.*;
 import java.awt.*;
 
-public class PixelComponentWhite extends JComponent
-{
+public class PixelComponent extends JComponent {
     private Color color;
 
-    public PixelComponentWhite(Color color)
+    public PixelComponent(Color color)
     {
         super();
         this.color = color;
-    }
-
-    public PixelComponentWhite()
-    {
-        this(Color.WHITE);
     }
 
     public void paintComponent(Graphics g, int i, int j)
