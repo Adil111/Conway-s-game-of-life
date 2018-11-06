@@ -4,11 +4,14 @@ public class Game {
     private static int offset1 = Constants.FIELD_SIZE - 1;
     private static int offset2 = Constants.FIELD_SIZE + 1;
     private static boolean[][] CURRENT_TURN = new boolean[Constants.FIELD_SIZE][Constants.FIELD_SIZE];
+    private static boolean[][] LAST_TURN = new boolean[Constants.FIELD_SIZE][Constants.FIELD_SIZE];
+
     private Game(){}
 
     public static void update(){
         for (int i = 0; i < Constants.FIELD_SIZE; i++) {   //update to this turn
             for (int j = 0; j < Constants.FIELD_SIZE; j++) {
+                LAST_TURN[i][j] = CURRENT_TURN[i][j];
                 CURRENT_TURN[i][j] = Field.getCell(i,j);
             }
         }
@@ -45,16 +48,12 @@ public class Game {
     public static boolean isOver(){
         for (int i = 0; i < Constants.FIELD_SIZE; i++) {
             for (int j = 0; j < Constants.FIELD_SIZE; j++) {
-                if (Field.getCell(i, j) != CURRENT_TURN[i][j]) {
-                    return false;
-                }
+                if(Field.getCell(i,j) != LAST_TURN[i][j]){return false;}
             }
         }
         return true;
     }
-
     public static boolean getCell(int i, int j){
         return CURRENT_TURN[i][j];
     }
-
 }
